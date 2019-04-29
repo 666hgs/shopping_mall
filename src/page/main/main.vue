@@ -3,8 +3,10 @@
 		<div id="container">
 			<Head></Head>
 			<div id="main">
-				<div id="son"></div>
+				<Vd></Vd>
 			</div>
+			<Hot></Hot>
+			<Bottom></Bottom>
 			<Foot></Foot>
 		</div>
 	</div>
@@ -14,7 +16,9 @@
 	import Vue from 'vue'
 	import Head from '../../components/Header/head.vue'
 	import Foot from '../../components/Footer/foot.vue'
-	
+	import Vd from './video.vue'
+	import Hot from './hot.vue'
+	import Bottom from './bottom.vue'
 		$(function() {
 		$(window).scroll(function() {
 	        var scrolls = $(this).scrollTop();
@@ -28,23 +32,19 @@
 	export default{
 		components:{
 		Head,
-		Foot
+		Foot,
+		Vd,					//背景动画
+		Hot,
+		Bottom
 		}
 	}
 </script>
 
-<style scoped>
+<style>
 		#main{
 		position: relative;
 		width: 100%;
-		height: 900px;
+		height: 100%;
 		margin-bottom: 10px;
-	}
-	#son{
-			width: 100%;
-		height: 800px;
-	/* 	background-color: #1B1B1B; */
-		background-image: url(../../assets/lunbo1.jpg);
-		background-repeat: no-repeat;
 	}
 </style>

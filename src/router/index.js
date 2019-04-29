@@ -13,7 +13,10 @@ export default new Router({
 	  {
 			path:'/',									//默认路径
 			component:main						//跳转的组件
-		},
+		},{
+			path:'/head',
+			component:head
+		}
 		
 		
   ]

@@ -252,12 +252,21 @@
 </script>
 
 <style>
+*{
+	padding: 0px;
+	margin: 0px;
+}
+#container{
+	width: 100%;
+/* 	background-color: grey; */
+}
 /*头部左边两个图标盒子*/
 #head{
 	width: 100%;
 	height: 90px;
 	position: fixed;
-	z-index: 1;
+/* 	background-color: #1B1B1B; */
+	z-index: 10;
 }
 #head:hover{
 	background-color: #1B1B1B ;
@@ -320,7 +329,7 @@
 	color: darkgrey;
 }
 /* 三个专区的下拉框 */
-#xiangshui,#hufu,#caizhuang{
+#xiangshui,#caizhuang,#hufu{
 	display: none;
 	position: absolute;
 	width: 100%;
@@ -350,6 +359,7 @@
 	height: 100%;
 }
 .xs_ul_ul{
+ padding-top: 8%; 
 	height: 100%;
 	width: 100%;
 }
@@ -427,17 +437,17 @@ color: #FFFFFF
 position: relative;
 	width: 11.4%;
 	height: 44.4%;
-	margin-left: 50px;
-	margin-top: 30px;
+	margin-left: 5%;
+	margin-top: 2%;
 	
 }
 #search_input{
 	width:77.7% ;
 	height: 63%;
-	padding-left: 20px;
-	padding-right: 5px;
+	padding-left: 10%;
+	padding-right: 2.5%;
 	border-radius: 15px;
-	border: 4px solid;
+	border: 4px solid white;
 	outline:none;
 	
 }
@@ -446,15 +456,15 @@ position: relative;
 	border-color: skyblue;
 }
 #serch_img{
-	margin-top: 8px;
-	margin-left: 5px;
+	margin-top: 4%;
+	margin-left: 2.5%;
 	background-image: url(../../assets/icon/search.png);
 	background-repeat: no-repeat;
 	position: absolute;
 	left: 0px;
 	 background-position: 0px 0px; 
-	width: 16px;
-	height: 16px;
+	width: 1rem;
+	height: 1rem;
 }
 #search_form{
 	position: absolute;
@@ -477,7 +487,7 @@ position: relative;
 /*头部右边三个图标*/
 #head_right{
 	float: right;
-	margin-top: 30px;
+	margin-top: 2%;
 	position:  relative;
 	width: 19%;
 	height: 44.4%;
