@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import head from '../components/Header/head.vue'							//导入头部组件
 import main from '../page/main/main.vue'
+import allOrder from '../page/order/allOrder.vue'
 Vue.use(Router)
 /**
  * 全部路由  写在routes数组中，用逗号隔开
@@ -16,6 +17,9 @@ export default new Router({
 		},{
 			path:'/head',
 			component:head
+		},{
+			path:'/order',
+			component:allOrder
 		}
 		
 		

@@ -2,15 +2,15 @@
 	<div>
 		<div id="head">
 			<div id="logo_div">
-				<a href="#" class="logo_a">
+				<a href="/" class="logo_a">
 					<img class="logo_imga"  src="../../assets/icon/logo2.png"/>  
 					<img class="logo_imgb"  src="../../assets/icon/logo1.png"/>
 				</a>
 			</div> 
 			<div id="head_list_div"> 
 				<ul class="head_list_ul">
-					<li class="zhuanqu" id="zhuanqu1">彩妆专区<span>|</span>
-					<div id="caizhuang">
+					<li class="zhuanqu" id="zhuanqu1" @mouseenter="enter1()" @mouseleave="leave1()">彩妆专区<span>|</span>
+					<div id="caizhuang" v-bind:class="czzq1==true?'block':'none'">
 						<div class="xs_head">
 							<ul class="xs_ul">
 								<li class="xs_ul_li">
@@ -67,8 +67,8 @@
 					
 					</li>
 					
-					<li class="zhuanqu" id="zhuanqu2">护肤专区<span>|</span>
-					<div id="hufu" style="display: none;">
+					<li class="zhuanqu" id="zhuanqu2" @mouseenter="enter2()" @mouseleave="leave2()">护肤专区<span>|</span>
+					<div id="hufu" v-bind:class="hfzq1==true?'block':'none'">
 						<div class="xs_head">
 							<ul class="xs_ul">
 								<li class="xs_ul_li">
@@ -132,8 +132,8 @@
 					</div>
 					</li>
 					
-					<li class="zhuanqu" id="zhuanqu3">香水专区
-					<div id="xiangshui" style="display: none;">
+					<li class="zhuanqu" id="zhuanqu3" @mouseenter="enter3()" @mouseleave="leave3()">香水专区
+					<div id="xiangshui" v-bind:class="xszq1==true?'block':'none'">
 						<div class="xs_head">
 							<ul class="xs_ul">
 								<li class="xs_ul_li">
@@ -193,9 +193,9 @@
 				</ul>
 			</div> 
 			 <div id="search">
-				<input id="search_input"/>
+				<input id="search_input" @focus="focus()" @blur="blur()"/>
 				<i id="serch_img"></i>
-				<div id="search_form">
+				<div id="search_form" v-bind:class="search==true?'block':'none'">
 					<ul> 
 						<li>1</li>
 						<li>1</li>
@@ -204,7 +204,7 @@
 				</div>
 			</div> 
 			<div id="head_right">
-				<div id="dingdan">
+				<div id="dingdan" @click="dingdan()">
 					<img src="../../assets/icon/dingdan1.png" id="dingdan1"/>
 					</div>
 					<div id="car">
@@ -221,7 +221,8 @@
 <script>
 	import Vue from 'vue'
 	$(function() {
-	$("#search_input").focus(function(){
+/* 	$("#search_input").focus(function(){
+		
 		$("#search_form").css("display","block");
 	})
 		$("#search_input").blur(function(){
@@ -244,14 +245,58 @@
 	}) 
 	$("#zhuanqu3").mouseout(function(){
 		$("#xiangshui").css("display","none");
-	}) 
+	}) */
 	})
+	const data={
+		czzq1:false ,
+		hfzq1:false ,
+		xszq1:false ,
+		search:false,
+	}
 	export default{
-		name:'Head'
+		name:'Head',
+		data(){
+			return data;
+		},
+		methods:{
+			dingdan(){
+				this.$router.replace("/order")
+			},
+			enter1(){
+				this.czzq1=true;
+			},
+			enter2(){
+				this.hfzq1=true;
+			},
+			enter3(){
+				this.xszq1=true;
+			},
+			focus(){
+				this.search=true;
+			},
+			leave1(){
+				this.czzq1=false;
+			},
+			leave2(){
+				this.hfzq1=false;
+			},
+			leave3(){
+				this.xszq1=false;
+			},
+			blur(){
+				this.search=false;
+			}
+		}
 	}
 </script>
 
 <style>
+	.none{
+		display: none;
+	}
+	.block{
+		display: block;
+	}
 *{
 	padding: 0px;
 	margin: 0px;
@@ -330,7 +375,6 @@
 }
 /* 三个专区的下拉框 */
 #xiangshui,#caizhuang,#hufu{
-	display: none;
 	position: absolute;
 	width: 100%;
 	height: 300px;
@@ -471,7 +515,6 @@ position: relative;
 	background-color: white;
 	left: 5%;
 	width: 85%;
-	display: none;
 }
 
 #search_form ul{
