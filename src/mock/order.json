@@ -3,36 +3,35 @@
 		{
 			"orderNumber":"1608030149",
 			"orderDate":"2019年5月4日12:41:57",
+			"goodsStatus":"fail",
 			"goodsList":[
 				{	"goodsImg":"/static/images/hot/hf/1.png",
 					"goodsDetail":"asdasdasd",
 					"goodsDetail2":"123456",
 					"goodsMoney":799,
 					"goodsNumber":1,
-					"goodsPay":799,
-					"goodsStatus":"fail"
+					"goodsPay":799
 				},
 				{	"goodsImg":"/static/images/hot/hf/1.png",
 					"goodsDetail":"qweqweqwe",
 					"goodsDetail2":"123456",
 					"goodsMoney":899,
 					"goodsNumber":2,
-					"goodsPay":1798,
-					"goodsStatus":"fail"
+					"goodsPay":1798
 				}
 			]
 		},
 		{
 			"orderNumber":"1608030150",
 			"orderDate":"2019年5月5日12:41:57",
+			"goodsStatus":"success",
 			"goodsList":[
 				{	"goodsImg":"/static/images/hot/hf/1.png",
 					"goodsDetail":"asdasdasd",
 					"goodsDetail2":"123456",
 					"goodsMoney":799,
 					"goodsNumber":1,
-					"goodsPay":799,
-					"goodsStatus":"success"
+					"goodsPay":799
 				}
 			]
 		}

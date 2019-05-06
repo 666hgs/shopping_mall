@@ -111,7 +111,7 @@
 								<!--交易状态-->
 								<td v-if="i==0">
 
-									<div v-if="v.goodsStatus=='success'">
+									<div v-if="value.goodsStatus=='success'">
 										<p>交易成功</p>
 										<p>订单详情</p>
 									</div>
