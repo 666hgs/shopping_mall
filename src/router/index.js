@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import head from '../components/Header/head.vue'							//导入头部组件
+import product from '../page/produce/product.vue'							//导入产品组件
+import comment from '../page/produce/comment.vue'							//导入评论组件	
 import main from '../page/main/main.vue'
 import allOrder from '../page/order/allOrder.vue'
 Vue.use(Router)
@@ -20,8 +22,16 @@ export default new Router({
 		},{
 			path:'/order',
 			component:allOrder
-		}
+		},
 		
+		{
+			path:'/product',									//默认路径
+			component:product					//跳转的组件
+		},
+		{
+			path:'/comment',									//默认路径
+			component:comment					//跳转的组件
+		},
 		
   ]
 })
