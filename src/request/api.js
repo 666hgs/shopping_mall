@@ -5,3 +5,5 @@ export const apiAddress = p => post('/user/query_myself_2', p);
 export const getHot =() =>post('/main/hot');
 export const queryOrderList =p =>post('/order/orderList',p);
 export const queryOrderAll =() =>post('/order/queryOrderAll');
+export const queryProduct =p =>post('/product/prodductList',p);
+export const queryComment =p =>post('/product/comment',p);

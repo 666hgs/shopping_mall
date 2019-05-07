@@ -5,45 +5,40 @@
 <div style="height: 1150px;padding-top:100px;">
     <div class="select" id="select">
     <div>
-        <h3>{{className}}</h3>
+        <h3>{{product.className}}</h3>
         <ul>
-            <li v-for="item in classList"><a :href="item.liurl">{{item.liname}}</a></li>
+            <li v-for="item in product.classList"><a :href="item.liurl">{{item.liname}}</a></li>
             
         </ul>
     </div>
   </div>
   <div id="main">
 
-    <div class="produce" v-for="item in list">
+    <div class="produce" v-for="item in product.productList">
     	<div></div>
     	<div>
-            <a :href="item.href">
+            <a :href="'product/'+item.id">
                 <img src="../../assets/product/2.png" alt="无痕持妆粉底液">
             </a>
         </div>
     	<div>
-            <a :href="item.href">{{item.productName}}</a>   
+            <a :href="'product/'+item.id">{{item.name}}</a>   
         </div>
-    	<h3><a :href="item.href">{{item.productElsName}}</a></h3>
+    	<h3><a :href="'product/'+item.id">{{item.engname}}</a></h3>
     	<div>
          <div style="width: 199px;height: 30px ;margin-left: auto;margin-right: auto;">
              <ul style="width: 100%;height: 100% ;">
-                 <li class="producels" style="background-color:#f5d0b0"></li>
-                 <li class="producels" style="background-color:#fbddbb"></li>
-                 <li class="producels" style="background-color:#f9d9bd"></li>
-                 <li class="producels" style="background-color:#f1c7a4"></li>
-                 <li class="producels" style="background-color:#edc59e"></li>
-                 <li class="producels" style="background-color:#ebc3a2"></li>
+                 <li class="producels" v-for="color in item.color" :style="{backgroundColor:color}"></li>
              </ul>
          </div>
         </div>
     	<div>
-            <span>{{item.star}}</span>
+            <span>★★★★</span>
         </div>
     	<div class="buy">
             
             <div class="price">￥{{item.price}}</div>
-            <a :href="item.href" class="buynow">立即购买</a>
+            <a :href="'product/'+item.id" class="buynow">立即购买</a>
             
         </div>
     	<div></div>
@@ -60,6 +55,7 @@
 
 import head from '../../components/Header/head.vue'
 import foot from '../../components/Footer/foot.vue'        
+import {queryProduct} from '../../request/api.js'
 export default {
     components:{
         abc:head,
@@ -67,51 +63,30 @@ export default {
     },
     data(){
         return{
-            show:true,
-            //分类名
-            className:'唇部',
-            // 子分类
-            classList:[
-                {liname:'唇釉',liurl:'https://www.baidu.com'},
-                {liname:'唇膏',liurl:'https://www.baidu.com'},
-                {liname:'唇线笔',liurl:'https://www.baidu.com'}
-            ],
-            //产品列表
-            list:[
-                {productName:'无痕持妆粉底液',productElsName:'POWER FABRIC',price:580,star:'★★★★★',href:'https://www.baidu.com'},
-                {productName:'轻垫精华粉底液（粉盒+粉芯）',productElsName:'POWER FABRIC',price:590,star:'★★★',href:'www.baidu.com'},
-                {productName:'造型紧颜粉底液',productElsName:'POWER FABRIC',price:580,star:'★★★★★',href:'www.baidu.com'},
-                {productName:'大师造型粉底乳',productElsName:'POWER FABRIC',price:580,star:'★★★★',href:'www.baidu.com'},
-            ],
+            product:{}
         }
         
     },
 
 
     methods:{
-        
-        blockHeight(event){
-            
-            /*event.target.style.height="26px";
-            if(event.currentTarget.nextElementSibling!=null)
-                event.currentTarget.nextElementSibling.style.height="12px";
-            if(event.currentTarget.nextElementSibling.nextElementSibling!=null)
-            event.currentTarget.nextElementSibling.nextElementSibling.style.height="12px";
-        if(event.currentTarget.nextElementSibling.nextElementSibling.nextElementSibling!=null)
-            event.currentTarget.nextElementSibling.nextElementSibling.nextElementSibling.style.height="12px";
-        if(event.currentTarget.nextElementSibling.nextElementSibling.nextElementSibling!=null)
-            event.currentTarget.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.style.height="12px";
-        if(event.currentTarget.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling!=null)
-            event.currentTarget.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.style.height="12px";*/
-
-        },
-        
-    }
+        queryProduct(pid){
+            queryProduct(pid).then(res => {
+                this.product = res;
+            }).catch(err => console.log(err))    
+        } 
+    },
+    mounted() {
+        this.queryProduct(1); //进入页面查询
+    }    
        
 }
 </script>
 
 <style>
+#head{
+    background-color:#1b1b1b;
+}
 .select{
         border-right: solid gray 1px;
         width: 18%;
