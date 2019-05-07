@@ -1,0 +1,44 @@
+{
+	"product":{
+		"productList":[
+        {
+			"id":"12311",
+        	"name":"无痕持妆粉底液",
+        	"engname":"POWER FABRIC",
+    		"price":580,
+			"picture":"../../../static/images/product/2.png",
+            "color":["#f5d0b0","#fbddbb","#f9d9bd","#f1c7a4","#edc59e","#ebc3a2"]
+		},
+        {
+        	"id":"12345",
+        	"name":"轻垫精华粉底液（粉盒+粉芯）",
+        	"engname":"POWER FABRIC",
+        	"price":590,
+        	"picture":"../../../static/images/product/2.png",
+            "color":["#f5d0b0","#fbddbb","#f9d9bd","#f1c7a4","#edc59e","#ebc3a2"]
+        },
+        {
+			"id":"12346",
+        	"name":"造型紧颜粉底液",
+        	"engname":"POWER FABRIC",
+    		"price":580,
+			"picture":"../../../static/images/product/2.png"
+		},
+        {
+			"id":"123457",
+        	"name":"大师造型粉底乳",
+        	"engname":"POWER FABRIC",
+    		"price":580,
+			"picture":"../../../static/images/product/2.png"
+		}
+    	],
+		"className":"唇部",
+    	"classList":[
+        	{"liname":"唇釉","liurl":"https://www.baidu.com"},
+        	{"liname":"唇膏","liurl":"https://www.baidu.com"},
+        	{"liname":"唇线笔","liurl":"https://www.baidu.com"}
+    	]
+	}
+    
+   
+}

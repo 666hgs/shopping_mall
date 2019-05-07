@@ -14,43 +14,42 @@
 							<span>总评论</span>
 							<span>★★★★★</span>
 						</div>
-						<div class="comment_count"><span>共72条评论</span></div>
+						<div class="comment_count"><span>共{{commentList.length}}条评论</span></div>
 						<div class="addcomment"><button>添加评论</button></div>
 					</div>
 				</div>
 				<div class="cm_list">
-					
-					<div v-for="(product,index) in list">
-						<div class="cmlist_line" v-if="index!=0"></div>
-						<div class="cm_item">
+					<div v-for="(comment,index) in commentList">
+						<div class="cmlist_line" v-if="index!=0&index<4"></div>
+						<div class="cm_item" v-if="index<4">
 							<div class="cm_item_left">
 								<img src="../../assets/product/no-custom-image.png">
-								<div>{{product.username}}</div>
+								<div>{{comment.u_id}}</div>
 							</div>
 							<div class="cm_item_middle">
 								<div style="width: 100%;">
 								<div class="comment_tags">
 									<ul>
-										<li class="comment_tag" v-for="tag in product.tags">{{tag}}</li>
+										<li class="comment_tag">{{comment.content}}</li>
 										
 									</ul>
 								</div>
 								</div>
 								<div class="comment_info">
-									<div>{{product.buyon}}</div>
-									<div>{{product.time}}</div>
-									<div style="margin:5px 0 0 0;font-size: 16px;">{{product.star}}</div>
+									<div>{{comment.buyon}}</div>
+									<div>{{comment.time}}</div>
+									<div style="margin:5px 0 0 0;font-size: 16px;">{{comment.star}}</div>
 								</div>
 							</div>
 							<div class="cm_item_right">
-								<div class="cmt_vote_statics">有{{product.cmcount}}位用户认为该评论有用.</div>
+								<div class="cmt_vote_statics">有{{comment.like_number}}位用户认为该评论有用.</div>
 								<div class="cmt_vote_title">该评论：</div>
 								<div class="cmt_vote_vole">
 									<button  value="有用">有用</button>
 								</div>
 							</div>
 						</div>
-						<div class="cm_more" v-if="show&&index==list.length-1" @click="changeshow">
+						<div class="cm_more" v-if="show&&index==commentList.length-1" @click="changeshow">
 							<div>
 								<button >更多评论</button>
 							</div>
@@ -58,37 +57,37 @@
 					</div>
 
 					
-					<div v-if="!show" v-for="(product,index) in list2">
-						<div class="cmlist_line"></div>
-						<div class="cm_item">
+					<div v-if="!show" v-for="(comment,index) in commentList" >
+						<div class="cmlist_line" v-if="index>=4"></div>
+						<div class="cm_item" v-if="index>=4">
 							<div class="cm_item_left">
 								<img src="../../assets/product/no-custom-image.png">
-								<div>{{product.username}}</div>
+								<div>{{comment.u_id}}</div>
 							</div>
 							<div class="cm_item_middle">
 								<div style="width: 100%;">
 								<div class="comment_tags">
 									<ul>
-										<li class="comment_tag" v-for="tag in product.tags">{{tag}}</li>
+										<li class="comment_tag">{{comment.content}}</li>
 										
 									</ul>
 								</div>
 								</div>
 								<div class="comment_info">
-									<div>{{product.buyon}}</div>
-									<div>{{product.time}}</div>
-									<div style="margin:5px 0 0 0;font-size: 16px;">{{product.star}}</div>
+									<div>{{comment.buyon}}</div>
+									<div>{{comment.time}}</div>
+									<div style="margin:5px 0 0 0;font-size: 16px;">{{comment.star}}</div>
 								</div>
 							</div>
 							<div class="cm_item_right">
-								<div class="cmt_vote_statics">有{{product.cmcount}}位用户认为该评论有用.</div>
+								<div class="cmt_vote_statics">有{{comment.like_number}}位用户认为该评论有用.</div>
 								<div class="cmt_vote_title">该评论：</div>
 								<div class="cmt_vote_vole">
 									<button  value="有用">有用</button>
 								</div>
 							</div>
 						</div>
-						<div class="cm_more" v-if="!show&&index==list2.length-1">
+						<div class="cm_more" v-if="!show&&index==commentList.length-1">
 							<div>
 								<button>更多评论</button>
 								<button @click="changeshow">收起</button>
@@ -103,24 +102,14 @@
 </template>
 
 <script>
-
+import {queryComment} from '../../request/api.js'
 
 export default{
+
 	data(){
 		return{
 			show:true,
-			list:[
-				{username:'黑寡妇',tags:['包装完好','物流快','态度好'],buyon:'线上官网购买',time:'2019-01-19 13:40:28',star:'★★★★★',cmcount:35},
-				{username:'蜘蛛侠',tags:['包装完好','物流快','态度好'],buyon:'线上官网购买',time:'2019-01-19 13:40:28',star:'★★★',cmcount:35},
-				{username:'猎神',tags:['包装完好','物流快','态度好'],buyon:'线上官网购买',time:'2019-01-19 13:40:28',star:'★★★★★',cmcount:35},
-				{username:'诸葛亮',tags:['包装完好','物流快','态度好'],buyon:'线上官网购买',time:'2019-01-19 13:40:28',star:'★★★★',cmcount:35},
-			],
-			list2:[
-				{username:'黑寡妇',tags:['包装完好','物流快','态度好'],buyon:'线上官网购买',time:'2019-01-19 13:40:28',star:'★★★★★',cmcount:35},
-				{username:'蜘蛛侠',tags:['包装完好','物流快','态度好'],buyon:'线上官网购买',time:'2019-01-19 13:40:28',star:'★★★',cmcount:35},
-				{username:'猎神',tags:['包装完好','物流快','态度好'],buyon:'线上官网购买',time:'2019-01-19 13:40:28',star:'★★★★★',cmcount:35},
-				{username:'诸葛亮',tags:['包装完好','物流快','态度好'],buyon:'线上官网购买',time:'2019-01-19 13:40:28',star:'★★★★',cmcount:35},
-			],
+			commentList:[]
 		}
 		
 	},
@@ -130,8 +119,16 @@ export default{
 		changeshow(event){
 			this.show=!this.show
 		},
-		
-	}
+		queryComment(pid){
+			queryComment(pid).then(res => {
+                this.commentList = res;
+            }).catch(err => console.log(err))
+		}
+	},
+	mounted() {
+        this.queryComment(1); //进入页面查询
+    }
+
 }
 </script>
 
@@ -248,8 +245,6 @@ export default{
 
 	}
 	.comment_tag{
-		background: #fff;
-    	width: 78px;
     	height: 23px;
     	line-height: 23px;
     	margin-right: 15px;
