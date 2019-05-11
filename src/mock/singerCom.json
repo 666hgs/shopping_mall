@@ -1,0 +1,44 @@
+{
+	"singerCom":  
+		{   
+			"id":1,
+			"pro_id":3,
+			"name":"男士香水",
+			"engname":"GIORGIO ARMANI PRIMA SOFT PEELING LOTION",
+			"capacity_arr":[
+				          { "capacity":15,"prices":50,"restnumber":5},
+						  { "capacity":100,"prices":250,"restnumber":3},
+						  { "capacity":150,"prices":450,"restnumber":4}
+				 ],  
+			"picture":"../../../static/images/hot/cz/cz1.png"
+		},
+		"Singercosmetics":{  
+			"id":1,
+			"pro_id":1,
+			"name":"口红",
+			"engname":"GIORGIO ARMANI PRIMA SOFT PEELING LOTION",
+			"color_arr":[
+				          { "color":"#000","color_name":"红色","restnumber":5},
+						  {"color":"#000","color_name":"红色","restnumber":5},
+						  {"color":"#000","color_name":"红色", "restnumber":5}
+				 ],  
+			"prices":50, 
+			"picture":"../../../static/images/hot/cz/cz1.png"
+		},
+		"Singerperfume":{   
+			"id":1,
+			"pro_id":2,
+			"name":"光钥新肌柔肤水",
+			"engname":"GIORGIO ARMANI PRIMA SOFT PEELING LOTION",
+			 "capacity_arr":[
+			 	          { "capacity":15,"prices":50,"restnumber":5}
+			 	 ],
+			"picture":"../../../static/images/hot/cz/cz1.png"
+		},
+		"SendObeject":{
+			 "id":2,
+			  "pro_id":2
+			  
+		}
+	
+}

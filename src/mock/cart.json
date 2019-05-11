@@ -1,0 +1,85 @@
+{
+	"cart_info":[
+		{
+		"id":1,
+		"pro_id":2,
+		"capacity":15,
+                "picture":"../../../static/images/hot/hf/1.png"
+               , "name":"光钥新肌柔肤水"
+      ,"price": 150
+      ,"number": 5
+      ,"sum_price":750
+      ,"notice": "人生恰似一场修行"
+    }, {
+			"id":1,
+			"pro_id":2,
+			"capacity":15,
+      "picture":"../../../static/images/hot/cz/cz1.png"
+      ,"name":"光钥新肌柔肤水"
+      ,"price": 150
+      ,"number": 5
+      ,"sum_price":750
+      ,"notice": "人生恰似一场修行"
+    }, {
+			 "id":1,
+			 "pro_id":2,
+			 "capacity":15,
+     "picture":"../../../static/images/hot/cz/cz1.png"
+      ,"name":"光钥新肌柔肤水"
+      ,"price": 150
+      ,"number": 5
+      ,"sum_price":750
+      ,"notice": "人生恰似一场修行"
+    }, {
+			"id":1,
+			"pro_id":2,
+			"capacity":15,
+      "picture":"../../../static/images/hot/cz/cz1.png"
+      ,"name":"光钥新肌柔肤水"
+      ,"price": 150
+      ,"number": 5
+      ,"sum_price":750
+      ,"notice": "人生恰似一场修行"
+    }, {
+			"id":1,
+			"pro_id":2,
+			"capacity":15,
+    "picture":"../../../static/images/hot/cz/cz1.png"
+     ,"name":"光钥新肌柔肤水"
+     ,"price": 150
+     ,"number": 5
+     ,"sum_price":750
+     ,"notice": "人生恰似一场修行"
+    }, {
+			"id":1,
+			"pro_id":2,
+			"capacity":15,
+      "picture":"../../../static/images/hot/cz/cz1.png"
+      ,"name":"光钥新肌柔肤水"
+      ,"price": 150
+      ,"number": 5
+      ,"sum_price":750
+      ,"notice": "人生恰似一场修行"
+    }, {
+			"id":1,
+			"pro_id":2,
+			"capacity":15,
+      "picture":"../../../static/images/hot/cz/cz1.png"
+      ,"name":"光钥新肌柔肤水"
+      ,"price": 150
+      ,"number": 5
+      ,"sum_price":750
+      ,"notice": "人生恰似一场修行"
+    }, {
+			"id":1,
+			"pro_id":2,
+			"capacity":15,
+    "picture":"../../../static/images/hot/cz/cz1.png"
+     ,"name":"光钥新肌柔肤水"
+     ,"price": 150
+     ,"number": 5
+     ,"sum_price":750
+     ,"notice": "人生恰似一场修行"
+    }
+	]
+}
