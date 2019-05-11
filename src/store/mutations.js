@@ -8,4 +8,5 @@ export const getPicture =(state, picture)=>{
 }
 export const getName =(state, name)=>{ 
 		state.name=name;
+
 }

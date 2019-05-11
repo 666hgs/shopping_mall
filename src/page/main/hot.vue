@@ -68,8 +68,9 @@
 				"../../../static/images/hot/cz/cz4.webp"], */
 		begin: 0,
 		end: 4,
-		msg: [],
-		/* {
+
+		msg: [
+		 {
 			head: "春日护肤",
 			imgList: [{
 					img: "../../../static/images/hot/hf/1.png",
@@ -245,8 +246,10 @@
 					money: 899,
 					tip: "热卖"
 				}
-			]
-		} */
+
+			]			
+		} 
+],
 
 	}
 	export default {
@@ -287,11 +290,12 @@
 				}
 			}
 		},mounted() {
-			getHot().then(				
+
+			/* getHot().then(				
 			res=>{
 				console.log(this)
 				this.msg=res 
-			}).catch(err=>console.log(err));
+			}).catch(err=>console.log(err)); */
 		}
 	}
 </script>

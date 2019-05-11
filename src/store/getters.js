@@ -3,3 +3,5 @@
 export const nav_msg = state => state.nav_msg
 export const picture = state => state.picture
 export const name = state => state.name
+export const userAll = state =>state.userAll
+

@@ -15,6 +15,7 @@
 	import {
 		queryOrderList
 	} from '../../request/api.js'
+	import {mapActions, mapGetters} from 'vuex'
 	export default {
 		props: {
 			cur: {
@@ -35,6 +36,7 @@
 
 		},
 		computed: {
+			...mapGetters(['userAll']),
 			//动态更新页码，一次只显示当前页面的左右共十个页面
 			indexs() {
 				var left = 1
@@ -83,12 +85,13 @@
 			},
 			//公用分页事件。返回数据
 			queryOrderByPage(page) {
-				let data = {
-					page: page,
-					list: []
+				let request={
+					page:page,
+					u_id:this.userAll.u_id
 				}
 				//根据页码查询数据
-				queryOrderList(page).then(res => {
+				queryOrderList(request).then(res => {
+
 					data.list = res
 					this.callback(data) //返回给调用组件
 				}).catch(err => console.log(err));
