@@ -5,6 +5,7 @@ import product from '../page/produce/product.vue'							//导入产品组件
 import comment from '../page/produce/comment.vue'							//导入评论组件	
 import main from '../page/main/main.vue'
 import allOrder from '../page/order/allOrder.vue'
+import KB from '../page/order/kongbai.vue'
 Vue.use(Router)
 /**
  * 全部路由  写在routes数组中，用逗号隔开
@@ -22,6 +23,9 @@ export default new Router({
 		},{
 			path:'/order',
 			component:allOrder
+		},{
+			path:'/kongbai',
+			component:KB
 		},
 		
 		{

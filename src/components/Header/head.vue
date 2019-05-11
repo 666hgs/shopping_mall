@@ -257,10 +257,10 @@
 		name:'Head',
 		data(){
 			return data;
-		},
+		},	
 		methods:{
 			dingdan(){
-				this.$router.replace("/order")
+				this.$router.replace("/kongbai")
 			},
 			toProduct(pid){
 				this.$router.replace("/product")
