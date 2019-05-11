@@ -103,17 +103,17 @@ export default {
             let pid=this.$route.query.p_id
             var _this=this
             if(pid==1){
-                queryCosmetics(pid).then(res => {
+                queryCosmetics().then(res => {
                     _this.productList = res;
                 }).catch(err => console.log(err))    
             }
             if(pid==2){
-                querySkinCare(pid).then(res => {
+                querySkinCare().then(res => {
                     _this.productList = res;
                 }).catch(err => console.log(err))    
             }
             if(pid==3){
-                queryPerfume(pid).then(res => {
+                queryPerfume().then(res => {
                     _this.productList = res;
                 }).catch(err => console.log(err))    
             }

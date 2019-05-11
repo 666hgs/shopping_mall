@@ -186,7 +186,7 @@ export default{
 			this.show=!this.show
 		},
 		queryComment(pid){
-			queryComment(pid).then(res => {
+			queryComment().then(res => {
                 this.commentList = res;
             }).catch(err => console.log(err))
 		},
