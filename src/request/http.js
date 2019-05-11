@@ -120,7 +120,7 @@ export function get(url, params){
  */
 export function post(url, params) { 
  return new Promise((resolve, reject) => {   
-  axios.post(url, params/* QS.stringify(params) */)  
+  axios.post(url, params)  
   .then(res => {  
    resolve(res.data);  
   })  
@@ -128,4 +128,15 @@ export function post(url, params) {
    reject(err.data);  
   }) 
  });
+ }
+ export function post2(url, params) { 
+  return new Promise((resolve, reject) => {   
+   axios.post(url, QS.stringify(params))  
+   .then(res => {  
+    resolve(res.data);  
+   })  
+   .catch(err => {
+    reject(err.data);  
+   }) 
+  });
 }

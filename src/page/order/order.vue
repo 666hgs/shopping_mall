@@ -103,15 +103,15 @@
 										<p>
 											<strong>
 												<span>$</span>
-												<span>{{v.goodsPay}}</span>
+												<span>{{v.goodsMoney*v.goodsNumber}}</span>
 											</strong>
 										</p>
 									</div>
 								</td>
 								<!--交易状态-->
-								<td v-if="i==0">
+								<td v-if="i==1">
 
-									<div v-if="value.goodsStatus=='success'">
+									<div v-if="value.goodsStatus==0">
 										<p>交易成功</p>
 										<p>订单详情</p>
 									</div>
@@ -151,6 +151,7 @@
 		queryOrderList,
 		queryOrderAll
 	} from '../../request/api.js'
+	import {mapActions, mapGetters} from 'vuex'
 	const data = {
 		cur: 1,
 		all: 0,
@@ -164,21 +165,35 @@
 		components: {
 			Page
 		},
+		
+		computed: {
+		    ...mapGetters(['userAll']) // 用户属性，动态计算属性，相当于this.$store.getters.resturantName
+		}
+		,
 		methods: {
 			callback(data) {
 				this.cur = data.page
 				this.orderList = data.list //分页操作
 				this.msg = '你点击了' + data.page + '页'
 			},
-			queryOrder() { //进入订单页面，默认第一页，查询第一页页面数据			
-				queryOrderList(1).then(
+			queryOrder() { //进入订单页面，默认第一页，查询第一页页面数据
+						let data={
+							page:1,
+							u_id:this.userAll.u_id
+						}
+						console.log("进入了")
+				queryOrderList(data).then(
 					res => {
 						this.orderList = res;
+						this.cur=data.page
 					}).catch(err => console.log(err));
 
 			},
 			queryOrderPageAll() {
-				queryOrderAll().then(res => {
+				let data={
+					u_id:this.userAll.u_id							//vuex里获取用户ID
+				}
+				queryOrderAll(data).then(res => {				
 					this.all = res
 				}).catch(err => console.log(err))
 			}

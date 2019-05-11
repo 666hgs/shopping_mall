@@ -3,7 +3,7 @@
 		{
 			"orderNumber":"1608030149",
 			"orderDate":"2019年5月4日12:41:57",
-			"goodsStatus":"fail",
+			"goodsStatus":"0",
 			"goodsList":[
 				{	"goodsImg":"/static/images/hot/hf/1.png",
 					"goodsDetail":"asdasdasd",
@@ -24,7 +24,7 @@
 		{
 			"orderNumber":"1608030150",
 			"orderDate":"2019年5月5日12:41:57",
-			"goodsStatus":"success",
+			"goodsStatus":"1",
 			"goodsList":[
 				{	"goodsImg":"/static/images/hot/hf/1.png",
 					"goodsDetail":"asdasdasd",

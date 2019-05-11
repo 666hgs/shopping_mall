@@ -12,6 +12,9 @@ const state={
 		attendCount:0,
 		fansCount:0,
 		blogCount:0
+	},
+	userAll:{
+		u_id:1608030149
 	}
 }
 
