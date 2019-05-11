@@ -68,6 +68,7 @@
 				"../../../static/images/hot/cz/cz4.webp"], */
 		begin: 0,
 		end: 4,
+
 		msg: [
 		 {
 			head: "春日护肤",
@@ -245,9 +246,11 @@
 					money: 899,
 					tip: "热卖"
 				}
+
 			]			
 		} 
 ],
+
 	}
 	export default {
 		data() {
@@ -287,6 +290,7 @@
 				}
 			}
 		},mounted() {
+
 			/* getHot().then(				
 			res=>{
 				console.log(this)

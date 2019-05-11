@@ -62,7 +62,6 @@
 				}
 				return ar
 			}
-			
 		},
 		methods: {
 			/**
@@ -86,16 +85,13 @@
 			},
 			//公用分页事件。返回数据
 			queryOrderByPage(page) {
-				let data = {
-					page: page,
-					list: []
-				}
 				let request={
 					page:page,
 					u_id:this.userAll.u_id
 				}
 				//根据页码查询数据
 				queryOrderList(request).then(res => {
+
 					data.list = res
 					this.callback(data) //返回给调用组件
 				}).catch(err => console.log(err));

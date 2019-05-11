@@ -13,8 +13,7 @@
 	import Head from '../../components/Header/head.vue'
 	import Foot from '../../components/Footer/foot.vue'
 	import Order from './order.vue'
-	
-	
+
 	export default{
 		components:{
 		Head,
@@ -24,6 +23,7 @@
 	}
 </script>
 
+
 <style scoped>
 		#main{
 		position: relative;
@@ -31,6 +31,7 @@
 		height: 100%;
 		margin-bottom: 10px;
 	}
+
 	/deep/ #head{
 		background-color:#1B1B1B;
 	}

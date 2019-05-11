@@ -104,14 +104,17 @@
 											<strong>
 												<span>$</span>
 												<span>{{v.goodsMoney*v.goodsNumber}}</span>
+
 											</strong>
 										</p>
 									</div>
 								</td>
 								<!--交易状态-->
+
 								<td v-if="i==1">
 
 									<div v-if="value.goodsStatus==0">
+
 										<p>交易成功</p>
 										<p>订单详情</p>
 									</div>
@@ -151,6 +154,7 @@
 		queryOrderList,
 		queryOrderAll
 	} from '../../request/api.js'
+
 	import {mapActions, mapGetters} from 'vuex'
 	const data = {
 		cur: 1,
@@ -161,21 +165,24 @@
 	export default {
 		data() {
 			return data;
-		},
+		},	
 		components: {
 			Page
 		},
+
 		
 		computed: {
 		    ...mapGetters(['userAll']) // 用户属性，动态计算属性，相当于this.$store.getters.resturantName
 		}
 		,
+
 		methods: {
 			callback(data) {
 				this.cur = data.page
 				this.orderList = data.list //分页操作
 				this.msg = '你点击了' + data.page + '页'
 			},
+
 			queryOrder() { //进入订单页面，默认第一页，查询第一页页面数据
 						let data={
 							page:1,
