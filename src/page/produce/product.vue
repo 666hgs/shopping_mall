@@ -135,8 +135,8 @@ export default {
 }
 </script>
 
-<style>
-#head{
+<style scoped>
+/deep/ #head{
     background-color:#1b1b1b;
 }
 .select{
