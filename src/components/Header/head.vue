@@ -14,21 +14,21 @@
 						<div class="xs_head">
 							<ul class="xs_ul">
 								<li class="xs_ul_li">
-									<ul class="xs_ul_ul" @click="toProduct(101)">
+									<ul class="xs_ul_ul" @click="toProduct(1)">
 										<li>唇膏</li>
 										<li>唇釉</li>
 										<li>唇膏</li>
 										<li>唇线笔</li>
 									</ul>
 								</li>
-								<li class="xs_ul_li"><ul class="xs_ul_ul"  @click="toProduct(102)">
+								<li class="xs_ul_li"><ul class="xs_ul_ul"">
 										<li>面部</li>
 										<li>胭脂</li>
 										<li>粉底液</li>
 										<li>面部清洁</li>
 										<li>底妆</li>
 									</ul></li>
-								<li class="xs_ul_li"><ul class="xs_ul_ul" @click="toProduct(103)">
+								<li class="xs_ul_li"><ul class="xs_ul_ul"">
 										<li>眼部</li>
 										<li>眉影</li>
 										<li>眉笔</li>
@@ -72,21 +72,21 @@
 						<div class="xs_head">
 							<ul class="xs_ul">
 								<li class="xs_ul_li">
-									<ul class="xs_ul_ul" @click="toProduct(201)">
+									<ul class="xs_ul_ul" @click="toProduct(2)">
 										<li>护肤系列</li>
 										<li>基础清洁</li>
 										<li>水类舒缓</li>
 										<li>眼唇保养</li>
 									</ul>
 								</li>
-								<li class="xs_ul_li"><ul class="xs_ul_ul" @click="toProduct(202)">
+								<li class="xs_ul_li"><ul class="xs_ul_ul"">
 										<li>光钥新肌肤</li>
 										<li>基础清洁</li>
 										<li>水类舒缓</li>
 										<li>眼唇保养</li>
 										<li>精华修护</li>
 									</ul></li>
-								<li class="xs_ul_li"><ul class="xs_ul_ul" @click="toProduct(203)">
+								<li class="xs_ul_li"><ul class="xs_ul_ul"">
 										<li>清洁防晒综合系列</li>
 										<li>基础清洁</li>
 										<li>面霜</li>
@@ -137,21 +137,21 @@
 						<div class="xs_head">
 							<ul class="xs_ul">
 								<li class="xs_ul_li">
-									<ul class="xs_ul_ul" @click="toProduct(301)">
+									<ul class="xs_ul_ul" @click="toProduct(3)">
 										<li>女士香水系列</li>
 										<li>阿玛尼新寄情香水</li>
 										<li>阿玛尼印记香水</li>
 										<li>阿玛尼挚爱香水</li>
 									</ul>
 								</li>
-								<li class="xs_ul_li"><ul class="xs_ul_ul" @click="toProduct(302)">
+								<li class="xs_ul_li"><ul class="xs_ul_ul"">
 										<li>男士香水系列</li>
 										<li>阿玛尼寄情香水</li>
 										<li>阿玛尼印记香水</li>
 										<li>阿玛尼印记运动香水</li>
 										<li>阿玛尼本色香水</li>
 									</ul></li>
-								<li class="xs_ul_li"><ul class="xs_ul_ul" @click="toProduct(303)">
+								<li class="xs_ul_li"><ul class="xs_ul_ul"">
 										<li>明星系列</li>
 										<li>寄情系列</li>
 										<li>挚爱系列</li>
@@ -262,8 +262,14 @@
 			dingdan(){
 				this.$router.replace("/kongbai")
 			},
-			toProduct(pid){
-				this.$router.replace("/product")
+			toProduct(p_id){
+				this.$router.push({
+        			path:'/product',
+        			query:{
+          				p_id:p_id
+        			}
+      			})
+				//this.$router.replace("/product")
 			},
 			enter1(){
 				this.czzq1=true;
