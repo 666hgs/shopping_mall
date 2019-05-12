@@ -27,8 +27,8 @@
 		background: #00FFFF;
       padding: 0;
 	}
-	.free{
+	/* .free{
 		width: 100%;
 		height: 80px;
-	}
+	} */
 </style>

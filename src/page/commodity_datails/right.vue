@@ -38,10 +38,10 @@
 			  <div id="ver_order" :class="hid==0?'ver_hid':'ver_show'">
 				  <div class="order_tip"><h3>亲，请核对订单信息</h3></div>
 				  <p class="order_title"><span>订单号:</span><span>{{orders.orders_number}}</span></p>
-				  <p class="order_title"><span>姓名:</span><span>hackerQ</span></p>
-				  <p class="order_title"><span>手机号码:</span><span>110</span></p>
-				  <p class="order_title"><span>地址:</span><span>呵呵</span></p>
-				  <p class="order_title">备注：fuck</p>
+				  <p class="order_title"><span>姓名:</span><span>{{orders.name}}</span></p>
+				  <p class="order_title"><span>手机号码:</span><span>{{orders.phone_number}}</span></p>
+				  <p class="order_title"><span>地址:</span><span>{{orders.address}}</span></p>
+				  <p class="order_title">备注：{{orders.note}}</p>
 				  <p class="order_sum">共{{number}}件商品，合计¥{{number*singerprice}}</p>
 				  
 					 <div class="order_btn">
@@ -56,7 +56,7 @@
 
 <script>
 	import {
-		queryCommodity
+		queryCommodity,addToCart,insertOrder
 	} from '../../request/api.js'
 	 import {mapActions, mapGetters} from 'vuex'
 	 import Stores from  '../../localStorage.js'
@@ -70,8 +70,9 @@
 				orders:{
 					orders_number:'20190504252',
 					name:'hackrQ',
-					phone_number:110,
-					address:'广州'
+					phone_number:13211249182,
+					address:'我家',
+					note:'人生就是一场旅行'
 				},
 				sum_comment:6,
 				hid:0,
@@ -79,24 +80,24 @@
 				curColor:'',
 				u_id:1,
                singerCom:[],
-			   token:'',
 			   product_id:'',
 			   "id":1,
 			   "pro_id":3,
+			  
 			   /* trolleys:[] */  /* 购物车测试数组 */
 			}
 		},
 		computed: {
-		     ...mapGetters(['userAll']) 						//token
+		     ...mapGetters(['userAll','token']) 						//token
 				},
 		methods:{
 			...mapActions(
 				['getPicture','getName']							//下面会调用
 			),
 			 chose_capacity(index,event){
-				this.sum_price=this.singerCom.capacity_arr[index].prices*this.number;
+				this.sum_price=this.singerCom.capacity_arr[index].price*this.number;
 				 this.curindex=index;
-				 this.singerprice=this.singerCom.capacity_arr[index].prices;
+				 this.singerprice=this.singerCom.capacity_arr[index].price;
 				 this.curCapacity= parseInt( event.currentTarget.innerHTML.replace("ml",""))  ; //获取迭代选中容量值            
 				 if(this.number>=this.singerCom.capacity_arr[index].restnumber){ /* 切换容量的最大值库存 */
 				 	this.number=this.singerCom.capacity_arr[index].restnumber;
@@ -111,7 +112,26 @@
 			 },
 			 submit_order(){
 				/* Stores.remove(); */
-				
+				let info={
+					u_id:this.id,  //产品id       //标志位
+					orderList:[
+						{
+							orderType :this.pro_id, //产品类型id
+							orderID	:this.userAll.u_id,  //用户id
+							goodsMoney:this.number*this.singerprice,
+							goodsNumber: this.number,
+							goodsDetail:this.singerCom.name,
+							goodsDetail2:this.curCapacity,  //当前容量
+							goodsImg:this.singerCom.picture,
+							
+						}	
+					]
+					  
+				}
+				insertOrder(info).then(res =>{
+					  this.orders.orders_number=res.orderNumber;
+					   
+				 }).catch( err => { console.log(err)})
 				 this.hid=1;
 				
 			 },
@@ -123,13 +143,14 @@
 				 this.id=this.$route.query.id;
 				 let GoodsDetailReq={
 					   pro_id:this.pro_id,
-					   id:this.id   
+					    id:this.id   
 				 }
+				
 				 queryCommodity(GoodsDetailReq).then(res =>{
-					  this.singerCom=res;
+					  this.singerCom=res.data;
 					  this.getPicture(this.singerCom.picture);
 					  this.getName(this.singerCom.name);
-					   this.singerprice=this.singerCom.capacity_arr[0].prices; //数据初始化
+					   this.singerprice=this.singerCom.capacity_arr[0].price; //数据初始化
 					   
 				 }).catch( err => { console.log(err)})
 			 },
@@ -150,14 +171,14 @@
 				   }else if(pro_ids==3){  //香水类
 				    this.product_id=ids.toString()+this.curCapacity.toString();//id加容量生成唯一主键
 				 }
-				 
+				  var sum=this.number*this.singerprice;
 				 if(this.token.trim()==""||this.token==null){ //未登录将数据存localstorage
 				    let trolleys=  Stores.fetch();
 					/* let trolleys=this.trolleys;  测试代码
 					console.log(this.curCapacity) */
 				    let  trolley=trolleys.find( value => 
 						value.id==this.id  &&value.capacity==this.curCapacity ) //标志位
-					let sum=this.number*this.singerprice
+					
 					
 					if(trolley){  /* 购物车已存在当前产品 */
 					  	 trolley.number+=parseInt(this.number)
@@ -187,6 +208,7 @@
                      });  
 					  
 				 }else{/* 将数据返回后台存redis */
+					
 				   let cart ={
 				      	 product_id:this.product_id,
 				      	 id:this.id,  //产品id     //标志位
@@ -200,12 +222,12 @@
 				      	 sum_price:sum,
 				      	 notice: "人生恰似一场修行",
 				      	 isSelected:1  /* 默认被选中 */
-				      }
-					   addCart(cart).then(res =>{
+				      };
+					   addToCart(cart).then(res =>{
 					  	   if(res==1){
 							    layui.use('layer', function(){
 							      var layer = layui.layer;
-							     layer.msg('商品添加成功');
+							     layer.msg('商品更新成功');
 							   }); 
 						   }
 					  					   

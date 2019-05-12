@@ -43,7 +43,7 @@
 			<button class="layui-btn layui-btn-danger layui-btn-radius txt_size">更改地址</button>
 		</div>
 		<div class="layui-col-md12 cart_opper space" >
-			<button class="layui-btn layui-btn-normal   end_btn">结算</button>
+			<button class="layui-btn layui-btn-normal   end_btn" @click="su">结算</button>
 		</div>
 	</div>
  </div>
@@ -51,7 +51,7 @@
 
 <script>
 	import {
-		addCart,queryCart
+		addToCart,queryCart,delCart,cleanCart,partCart
 	} from '../../request/api.js'
 	 import Stores from  '../../localStorage.js'
 	  import {mapActions, mapGetters} from 'vuex'
@@ -61,7 +61,6 @@
 			 return{
 				   cart_info:[],
 					 selected:[],//被选中的产品
-					 u_id:'',
 					 curindex:-1,
 					 key:[],
 					 noDelProduct:[] /* 需要清除的产品 */
@@ -81,7 +80,6 @@
 		 methods:{
 				loadCart(){ //页面加载时，加载购物车数据
 					if(this.token.trim()==""||this.token==null){  //未登录
-					      
 						    this.cart_info=Stores.fetch();
 							this.selected=this.cart_info;
 							this.$refs.selectAllTop.checked=true;
@@ -92,14 +90,18 @@
 					   var   tempCart=[];
 					   if(Stores.fetch().length!=0){
 					   		for(let car in Stores.fetch()){
-					   			 addCart(car).then(res =>{
+					   			 addToCart(car).then(res =>{
 					   				   				   
 					   			}).catch( err => { console.log(err)})
+								Stores.remove();
 					   	   }
 						   console.log("本地商品更新成功")
-					   		Stores.remove();
+					   		
 					   }
-						queryCart(this.u_id).then(res =>{  /* 合并本地localstorage */
+					   let data={
+						   u_id:this.userAll.u_id
+					   }
+						queryCart(data).then(res =>{  /* 合并本地localstorage */
 					         this.cart_info=res;
 					         this.selected=this.cart_info;
 					         this.$refs.selectAllTop.checked=true;
@@ -114,7 +116,11 @@
 						    this.cart_info.splice(index,1);  
 								Stores.save( this.cart_info)
 					}else{//已登录
-						delCart(this.cart_info[index].product_id,this.u_id).then(res =>{
+					    let data={
+							    product_id:this.cart_info[index].product_id,
+					   			 u_id:this.userAll.u_id
+					   }
+						delCart(data).then(res =>{
 								    this.cart_info.splice(index,1);  
 						}).catch( err => { console.log(err)})
 					}
@@ -161,7 +167,11 @@
 					for(let i=0;i<this.cart_info.length;i++){
 					      this.key.push(this.cart_info[i].product_id)
 					}
-					cleanCart(this.u_id,this.key).then(res =>{
+					let data={
+						 u_id:this.userAll.u_id,
+						 key:this.key+''
+					}
+					cleanCart(data).then(res =>{
 							 this.cart_info=[];
 					}).catch( err => { console.log(err)})
 						
@@ -183,7 +193,11 @@
 		                         this.key.push(this.cart_info[i].product_id)
 							}
 					}
-						partCart(this.u_id,this.key).then(res =>{
+					let data={
+						 u_id:this.userAll.u_id,
+						 key:this.key+''
+					}
+						partCart(data).then(res =>{
 							for(let i=0;i<this.cart_info.length;i++){
 								if(this.cart_info[i].isSelected==1){
 								this.cart_info.splice(i,1); /* 被选中的 */
@@ -194,6 +208,28 @@
 						}).catch( err => { console.log(err)})
 						
 					}
+				},
+				su(){
+					/* let info={
+						u_id:this.id,  //产品id       //标志位
+						orderList:[
+							{
+								orderType :this.pro_id, //产品类型id
+								orderID	:this.userAll.u_id,  //用户id
+								goodsMoney:this.number*this.singerprice,
+								goodsNumber: this.number,
+								goodsDetail:this.singerCom.name,
+								goodsDetail2:this.curCapacity,  //当前容量
+								goodsImg:this.singerCom.picture,
+								
+							}	
+						]
+						  
+					}
+					insertOrder(info).then(res =>{
+						  this.orders.orders_number=res.ordreNumber;
+						   
+					 }).catch( err => { console.log(err)}) */
 				}
 				
 		 },
@@ -217,7 +253,7 @@
 
 
 <style scoped>
-	body{
+/deep/	body{
 		background: url(../../../static/images/cart/8.jpg);
 		background-size: cover;
 		
@@ -242,7 +278,7 @@
 		/* background:yellowgreen; */
 		font-family:  "Comic Sans MS", cursive, "微软雅黑";
 		font-size: 18px;
-		color: white;
+		color: black;
 		 /* background: #f2f2f2; */
 		
 	}

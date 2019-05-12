@@ -15,7 +15,7 @@ const state={
 		fansCount:0,
 		blogCount:0
 	},
-	token:""
+	token:"1"
 	,
 	picture:""			,//以此类推,
 	name:"",
