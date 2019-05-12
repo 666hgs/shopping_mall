@@ -186,7 +186,21 @@ export default{
 			this.show=!this.show
 		},
 		queryComment(pid){
-			queryComment().then(res => {
+			var comment={
+        		"com_id":0,
+        		"time":'',
+        		"like_number":0,
+        		"cosmetic_id":this.$route.query.id,
+        		"pro_id":this.$route.query.pro_id,
+        		"u_id":'1',
+        		"content":this.content,
+        		"star":this.starNum,
+        		"buyon":this.buyon,
+        		"u_lastname":'',
+        		"pro_type":'',
+        		"name":''
+        	}
+			queryComment(comment).then(res => {
                 this.commentList = res;
             }).catch(err => console.log(err))
 		},
@@ -236,12 +250,12 @@ export default{
         //添加评论
         addcomment(){
         	var comment={
-        		"com_id":'',
+        		"com_id":0,
         		"time":'',
         		"like_number":0,
         		"cosmetic_id":this.$route.query.id,
         		"pro_id":this.$route.query.pro_id,
-        		"u_id":'1',
+        		"u_id":this.userAll.u_id,
         		"content":this.content,
         		"star":this.starNum,
         		"buyon":this.buyon,
@@ -263,7 +277,7 @@ export default{
         this.queryComment(1); //进入页面查询
     },
     computed: {
-        ...mapGetters(['picture','name']) 						
+        ...mapGetters(['picture','name','userAll']) 						
         // 动态计算属性，相当于this.$store.getters.resturantName
    	}
 

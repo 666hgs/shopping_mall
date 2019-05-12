@@ -2,7 +2,7 @@
 <div>
 <abc></abc>
 		
-<div style="height: 1150px;padding-top:100px;">
+<div style="height: 1000px;padding-top:100px;">
     <div class="select" id="select">
     <div v-if="$route.query.p_id==1">
         <h3>唇部</h3>
@@ -31,7 +31,7 @@
   </div>
   <div id="main">
 
-    <div class="produce" v-for="(item,index) in productList" v-if="index<6">
+    <div class="produce" v-for="(item,index) in productList" v-if="index>=(curPage-1)*6&index<curPage*6">
     	<div></div>
     	<div>
             <a href="#" @click="toProductDetail($route.query.p_id,item.id)">
@@ -73,6 +73,11 @@
     
     
  </div>
+ <div class="page">
+    <button class="prePage" @click="prePage"><上页</button>
+     <span style="margin-right: 30px">{{curPage}}/{{totalPage}}</span>
+     <button class="nextPage" @click="nextPage">下页></button>
+ </div>
  </div>
 <footh></footh>
 </div>
@@ -90,7 +95,9 @@ export default {
     },
     data(){
         return{
-            productList:[]
+            productList:[],
+            totalPage:0,
+            curPage:1,
         }
         
     },
@@ -102,19 +109,28 @@ export default {
         queryProduct(){
             let pid=this.$route.query.p_id
             var _this=this
+            //查所有彩妆产品
             if(pid==1){
                 queryCosmetics().then(res => {
                     _this.productList = res;
+                    _this.curPage=1;//初始化为第一页
+                    _this.totalPage=parseInt(res.length/6)+1;//计算总页数
                 }).catch(err => console.log(err))    
             }
+            //查所有护肤产品
             if(pid==2){
                 querySkinCare().then(res => {
                     _this.productList = res;
+                    _this.curPage=1;//初始化为第一页
+                    _this.totalPage=parseInt(res.length/6)+1;//计算总页数
                 }).catch(err => console.log(err))    
             }
+            //查所有香水产品
             if(pid==3){
                 queryPerfume().then(res => {
                     _this.productList = res;
+                    _this.curPage=1;//初始化为第一页
+                    _this.totalPage=parseInt(res.length/6)+1;//计算总页数
                 }).catch(err => console.log(err))    
             }
         } ,
@@ -126,6 +142,13 @@ export default {
                     id:id//产品id
                 }
             })
+        },
+        //翻页
+        prePage(){
+            if(this.curPage>1)this.curPage--
+        },
+        nextPage(){
+            if(this.curPage<this.totalPage)this.curPage++
         }
     },
     mounted() {
@@ -194,7 +217,7 @@ export default {
     }
     #main{
         width: auto;
-        height: auto;
+        height: 850px;
     }
     .buy{
         margin-top: 10px;
@@ -230,5 +253,15 @@ export default {
         height: 19px;
         width: 84px; 
         float: left;
+    }
+    .page{
+        float: right;
+        margin: 80px 80px 0
+    }
+    .prePage{
+        margin-right: 30px;padding: 4px 10px
+    }
+    .nextPage{
+        padding: 4px 10px
     }
 </style>
