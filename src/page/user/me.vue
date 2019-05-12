@@ -272,10 +272,8 @@
 			//信息修改
 			user_upd: function(){
 				let data={
+					u_birth: this.years + '-' + this.months + '-' + this.days,
 					u_id : this.userAll.u_id,
-					year: this.years, 
-					month: this.months,
-					day: this.days,
 					u_sex: this.u_sex,
 					u_lastname: this.u_lastname,
 					u_phone: this.u_phone,

@@ -279,7 +279,7 @@ import {mapActions, mapGetters} from 'vuex'
 			},
 			tiao(){
 				console.log(JSON.stringify(this.userAll))
-				if(JSON.stringify(this.userAll)=='{}'){
+				if(this.userAll.u_id == ''){
 					this.$router.replace("/login")
 				}else{
 					this.$router.replace("/index")

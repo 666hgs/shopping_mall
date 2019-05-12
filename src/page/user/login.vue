@@ -197,20 +197,20 @@
 					user_phone: this.username,
 					u_pwd: this.u_pwd,
 				}).then(res => { //登录成功后，把用户信息存入vuex
-// 					if(res.user.u_status == 1){
-// 						if(res.message == 'error'){
-// 							alert("登录失败,用户不存在")
-// 						}
-// 						else if(res.message == 'pwd'){
-// 							alert("登录失败,密码错误")
-// 						}else{
-							this.query_userAll(res)
+					if(res.user.u_status == 1){
+						if(res.message == 'error'){
+							alert("登录失败,用户不存在")
+						}
+						else if(res.message == 'pwd'){
+							alert("登录失败,密码错误")
+						}else{
+							this.query_userAll(res.user)
 							this.$router.replace("/index")
-							this.gettoken(res)
-// 						}
-// 					}else{
-// 						alert("该账号被冻结")
-// 					}
+							this.gettoken(res.token)
+						}
+					}else{
+						alert("该账号被冻结")
+					}
 				})
 			}
 		},
@@ -261,7 +261,9 @@
 					user_phone: this.u_phone,
 					u_pwd: this.re_pwd
 				}).then(res => { 
-					this.$router.replace("/login")
+					// this.$router.replace("/login")
+					this.classStyle.display = 'none';
+					document.body.style = 'overflow: auto';
 				})
 			}
 			
