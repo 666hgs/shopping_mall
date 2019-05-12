@@ -22,8 +22,8 @@
 	}
 </script>
 
-<style>
-	#head{
+<style scoped>
+	/deep/ #head{
 		background-color:#1B1B1B;
 	}
 	.free{

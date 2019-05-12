@@ -6,7 +6,7 @@ export const apiAddress = p => post('/user/query_myself_2', p);
 export const getHot =() =>post('/main/hot');
 
 /* 产品详情 */
-export const queryCommodity = id =>post('/Com/querySingerCom',id);
+export const queryCommodity = p =>post('/Com/querySingerCom',p);
 
 /* 购物车 */
 export const  queryCart = u_id => post('/Com/queryCartList',u_id);  //查询购物车

@@ -86,9 +86,9 @@
 			   /* trolleys:[] */  /* 购物车测试数组 */
 			}
 		},
-		/* computed: {
-		     ...mapGetters(['token']) 						//token
-				}, */
+		computed: {
+		     ...mapGetters(['userAll']) 						//token
+				},
 		methods:{
 			...mapActions(
 				['getPicture','getName']							//下面会调用
@@ -110,7 +110,8 @@
 				 }
 			 },
 			 submit_order(){
-				 Stores.remove();
+				/* Stores.remove(); */
+				
 				 this.hid=1;
 				
 			 },
@@ -118,7 +119,13 @@
 				 this.hid=0; 
 			 },
 			 querySingerCom(){ /* 查询单个商品 */
-				 queryCommodity(1).then(res =>{
+			    this.pro_id=this.$route.query.pro_id;
+				 this.id=this.$route.query.id;
+				 let GoodsDetailReq={
+					   pro_id:this.pro_id,
+					   id:this.id   
+				 }
+				 queryCommodity(GoodsDetailReq).then(res =>{
 					  this.singerCom=res;
 					  this.getPicture(this.singerCom.picture);
 					  this.getName(this.singerCom.name);
@@ -134,6 +141,16 @@
                      }); 
 					  return;
 				 }
+				 let ids=this.id;   //当前产品id         //标志位
+				 let pro_ids=this.pro_id  ///获取当前产品类型
+				  if(pro_ids==1){  //彩妆类
+				    this.product_id=ids.toString()+this.curColor;  //id加颜色生成唯一主键
+				  }else if(pro_ids==2){  //护肤类
+				    this.product_id=ids.toString();  //id生成唯一主键
+				   }else if(pro_ids==3){  //香水类
+				    this.product_id=ids.toString()+this.curCapacity.toString();//id加容量生成唯一主键
+				 }
+				 
 				 if(this.token.trim()==""||this.token==null){ //未登录将数据存localstorage
 				    let trolleys=  Stores.fetch();
 					/* let trolleys=this.trolleys;  测试代码
@@ -141,16 +158,6 @@
 				    let  trolley=trolleys.find( value => 
 						value.id==this.id  &&value.capacity==this.curCapacity ) //标志位
 					let sum=this.number*this.singerprice
-					
-					let ids=this.id;   //当前产品id         //标志位
-		            let pro_ids=this.pro_id  ///获取当前产品类型
-					 if(pro_ids==1){  //彩妆类
-                       this.product_id=ids.toString()+this.curColor;  //id加颜色生成唯一主键
-                     }else if(pro_ids==2){  //护肤类
-                       this.product_id=ids.toString();  //id生成唯一主键
-                      }else if(pro_ids==3){  //香水类
-                       this.product_id=ids.toString()+this.curCapacity.toString();//id加容量生成唯一主键
-                    }
 					
 					if(trolley){  /* 购物车已存在当前产品 */
 					  	 trolley.number+=parseInt(this.number)
@@ -161,7 +168,7 @@
 							 product_id:this.product_id,  
 							 id:this.id,  //产品id       //标志位
 							 pro_id:this.pro_id, //产品类型id
-							 u_id:this.u_id,  //用户id
+							 u_id:this.userAll.u_id,  //用户id
 							 capacity:this.curCapacity,  //当前容量
 							 picture:this.singerCom.picture,
 							 name:this.singerCom.name,
@@ -184,7 +191,7 @@
 				      	 product_id:this.product_id,
 				      	 id:this.id,  //产品id     //标志位
 				      	 pro_id:this.pro_id, //产品类型id
-				      	 u_id:this.u_id,  //用户id
+				      	 u_id:this.userAll.u_id,  //用户id
 				      	 capacity:this.curCapacity,  //当前容量
 				      	 picture:this.singerCom.picture,
 				      	 name:this.singerCom.name,

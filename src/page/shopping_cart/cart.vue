@@ -54,13 +54,13 @@
 		addCart,queryCart
 	} from '../../request/api.js'
 	 import Stores from  '../../localStorage.js'
+	  import {mapActions, mapGetters} from 'vuex'
 	export default{
 		 name:'cart',
 		 data(){
 			 return{
 				   cart_info:[],
 					 selected:[],//被选中的产品
-					 token:'',
 					 u_id:'',
 					 curindex:-1,
 					 key:[],
@@ -74,7 +74,9 @@
 			 },
 			  totalPrice(){
 			 	 return this.selected.reduce((a,b) =>parseFloat(a)+parseFloat(b.sum_price),0)
-			 }
+			 },
+			 
+			 ...mapGetters(['userAll','token']) 
 		 },
 		 methods:{
 				loadCart(){ //页面加载时，加载购物车数据
@@ -87,6 +89,16 @@
 									this.cart_info[i].isSelected=1					       
 							}
 					}else{//已登录
+					   var   tempCart=[];
+					   if(Stores.fetch().length!=0){
+					   		for(let car in Stores.fetch()){
+					   			 addCart(car).then(res =>{
+					   				   				   
+					   			}).catch( err => { console.log(err)})
+					   	   }
+						   console.log("本地商品更新成功")
+					   		Stores.remove();
+					   }
 						queryCart(this.u_id).then(res =>{  /* 合并本地localstorage */
 					         this.cart_info=res;
 					         this.selected=this.cart_info;
@@ -204,7 +216,7 @@
 </script>
 
 
-<style>
+<style scoped>
 	body{
 		background: url(../../../static/images/cart/8.jpg);
 		background-size: cover;

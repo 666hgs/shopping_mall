@@ -6,7 +6,7 @@ import router from './router'											//路由
 import store from './store'												//vuex全局管理变量
 import $ from 'jquery'													//全局引入jq
 import Axios from 'axios'												//ajax请求
-import './mock/mockServer.js' 							//生产环境删掉即刻
+//import './mock/mockServer.js' 							//生产环境删掉即刻
 Vue.config.productionTip = false
 Vue.prototype.$http=Axios
 /* eslint-disable no-new */

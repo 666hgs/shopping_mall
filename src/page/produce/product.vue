@@ -120,7 +120,7 @@ export default {
         } ,
         toProductDetail(p_id,id){
             this.$router.push({
-                path:'/full_module',
+                path:'/detail',
                 query:{
                     pro_id:p_id,//产品类型id
                     id:id//产品id

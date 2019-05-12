@@ -5,6 +5,7 @@
 		<centercontext></centercontext>
 		<descContext></descContext>
 		<detailContext></detailContext>
+		<comment></comment>
 		<Foot></Foot>
 	</div>
 	
@@ -15,6 +16,7 @@
 	import Foot from '../../components/Footer/foot.vue'
 	import center  from './center.vue'
 	import  desc  from './desc.vue'
+	import  comment from '../produce/comment.vue'
 	import  detail  from './detail.vue'
 	
 	export default{
@@ -22,14 +24,15 @@
 			centercontext:center,
 			descContext:desc,
 			detailContext:detail,
+			comment,
 			Head,
 			Foot
 		},
 	}
 </script>
 
-<style>
-	#head{
+<style scoped>
+	/deep/ #head{
 		background-color:#1B1B1B;
 	}
 	.free{

@@ -34,7 +34,6 @@ export default new Router({
 			path:'/kongbai',
 			component:KB
 		},
-		
 		{
 			path:'/product',									//默认路径
 			component:product					//跳转的组件
