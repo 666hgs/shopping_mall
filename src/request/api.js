@@ -8,6 +8,6 @@ export const queryOrderAll =p =>post2('/order/queryOrderAll',p);
 export const queryCosmetics =() =>post2('/cosmetics/cosmeticsList');
 export const querySkinCare =() =>post2('/skinCare/skinCareList');
 export const queryPerfume =() =>post2('/perfume/perfumeList');
-export const queryComment =() =>post2('/product/comment');
+export const queryComment =p =>post('/comment/getComment',p);
 //添加评论
 export const addComment =p =>post('/comment/addComment',p);
