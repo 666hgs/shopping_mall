@@ -33,32 +33,21 @@ axios.interceptors.request.use(
  }, 
  error => {  
   return Promise.error(error); 
- })
+ }) 
+
 
 // 响应拦截器
 axios.interceptors.response.use( 
  response => {  
-  if (response.status === 200) { 
-	  console.log("error")
+  if (response.status === 200) {  
    return Promise.resolve(response);  
   } else {   
-	  console.log("error")
    return Promise.reject(response);  
   } 
  },
  // 服务器状态码不是200的情况 
- error => {
-  if (error.response.status) {   
-	  console.log("error")
-	  console.log(error.response.status)
-	  
-// 	  if(true){
-// 		  console.log(",,,")
-// 		  router.replace({      
-// 		        path: '/me',      
-// 		        query: { redirect: router.currentRoute.fullPath } 
-// 		       });
-// 	  }
+ error => {   
+  if (error.response.status) {  	  
    switch (error.response.status) {    
     // 401: 未登录    
     // 未登录则跳转登录页面，并携带当前页面的路径    
@@ -95,7 +84,7 @@ axios.interceptors.response.use(
       router.replace({      
      path: '/login',      
      query: { redirect: router.currentRoute.fullPath } 
-    });   
+    });  
     break;    
     // 其他错误，直接抛出错误提示    
     default:     
@@ -128,25 +117,19 @@ export function get(url, params){
  * @param {String} url [请求的url地址] 
  * @param {Object} params [请求时携带的参数] 
  */
-/**
- * json形式
- * requestbodys
- */
+
 export function post(url, params) { 
  return new Promise((resolve, reject) => {   
-  axios.post(url, params)  
-  .then(res => {   
+  axios.post(url, params)
+  .then(res => {  
    resolve(res.data);  
   })  
-  .catch(err => {   
-   reject(err.data)  
+  .catch(err => {
+   reject(err.data);  
   }) 
  });
 }
 
-/**
- * requestparams
- */
 export function post2(url, params) { 
  return new Promise((resolve, reject) => {   
   axios.post(url, QS.stringify(params))  
@@ -158,3 +141,4 @@ export function post2(url, params) {
   }) 
  });
 }
+

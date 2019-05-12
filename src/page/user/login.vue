@@ -311,6 +311,9 @@
 </script>
 
 <style scoped>
+	/deep/ #head{
+		background-color: #1B1B1B;
+	}
 	.msg{
 		color: red;
 		/* margin-top: -60px; */

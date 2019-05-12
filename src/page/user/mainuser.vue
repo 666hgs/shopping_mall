@@ -67,7 +67,7 @@
 		}
 	}
 </script>
-<style>
+<style scoped>
 	a p label h2 span {
 		font-family: "FuturaLT-Book", "NotoSansCJKsc-Regular", "NotoSansCJKsc-Normal", "PingFangSC-Regular", "Hiragino Sans GB", "\5FAE\8F6F\96C5\9ED1", "Microsoft YaHei", sans-serif;
 	}

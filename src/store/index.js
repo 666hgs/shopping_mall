@@ -5,6 +5,10 @@ import * as actions from './actions.js'
 import * as mutations from './mutations.js'
 
 Vue.use(Vuex) 
+
+//多个组件用到的值放到vuex中管理
+
+
 //声明全局维护的状态state
 const state={
 	//个人信息，粉丝关注博客数量
@@ -14,7 +18,11 @@ const state={
 		blogCount:0
 	},
 	userAll:{},
-	token: ''
+	token: '',
+	picture:""			,//以此类推,
+	name:"",
+	
+
 }
 
 //注册上面引入的各大模块

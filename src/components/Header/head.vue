@@ -2,33 +2,34 @@
 	<div>
 		<div id="head">
 			<div id="logo_div">
-				<a href="#" class="logo_a">
+				<a href="/" class="logo_a">
 					<img class="logo_imga"  src="../../assets/icon/logo2.png"/>  
 					<img class="logo_imgb"  src="../../assets/icon/logo1.png"/>
 				</a>
 			</div> 
 			<div id="head_list_div"> 
 				<ul class="head_list_ul">
-					<li class="zhuanqu" id="zhuanqu1">彩妆专区<span>|</span>
-					<div id="caizhuang">
+
+					<li class="zhuanqu" id="zhuanqu1" @mouseenter="enter1()" @mouseleave="leave1()">彩妆专区<span>|</span>
+					<div id="caizhuang" v-bind:class="czzq1==true?'block':'none'">
 						<div class="xs_head">
 							<ul class="xs_ul">
 								<li class="xs_ul_li">
-									<ul class="xs_ul_ul">
+									<ul class="xs_ul_ul" @click="toProduct(1)">
 										<li>唇膏</li>
 										<li>唇釉</li>
 										<li>唇膏</li>
 										<li>唇线笔</li>
 									</ul>
 								</li>
-								<li class="xs_ul_li"><ul class="xs_ul_ul">
+								<li class="xs_ul_li"><ul class="xs_ul_ul"">
 										<li>面部</li>
 										<li>胭脂</li>
 										<li>粉底液</li>
 										<li>面部清洁</li>
 										<li>底妆</li>
 									</ul></li>
-								<li class="xs_ul_li"><ul class="xs_ul_ul">
+								<li class="xs_ul_li"><ul class="xs_ul_ul"">
 										<li>眼部</li>
 										<li>眉影</li>
 										<li>眉笔</li>
@@ -67,26 +68,26 @@
 					
 					</li>
 					
-					<li class="zhuanqu" id="zhuanqu2">护肤专区<span>|</span>
-					<div id="hufu" style="display: none;">
+					<li class="zhuanqu" id="zhuanqu2" @mouseenter="enter2()" @mouseleave="leave2()">护肤专区<span>|</span>
+					<div id="hufu" v-bind:class="hfzq1==true?'block':'none'">
 						<div class="xs_head">
 							<ul class="xs_ul">
 								<li class="xs_ul_li">
-									<ul class="xs_ul_ul">
+									<ul class="xs_ul_ul" @click="toProduct(2)">
 										<li>护肤系列</li>
 										<li>基础清洁</li>
 										<li>水类舒缓</li>
 										<li>眼唇保养</li>
 									</ul>
 								</li>
-								<li class="xs_ul_li"><ul class="xs_ul_ul">
+								<li class="xs_ul_li"><ul class="xs_ul_ul"">
 										<li>光钥新肌肤</li>
 										<li>基础清洁</li>
 										<li>水类舒缓</li>
 										<li>眼唇保养</li>
 										<li>精华修护</li>
 									</ul></li>
-								<li class="xs_ul_li"><ul class="xs_ul_ul">
+								<li class="xs_ul_li"><ul class="xs_ul_ul"">
 										<li>清洁防晒综合系列</li>
 										<li>基础清洁</li>
 										<li>面霜</li>
@@ -132,26 +133,26 @@
 					</div>
 					</li>
 					
-					<li class="zhuanqu" id="zhuanqu3">香水专区
-					<div id="xiangshui" style="display: none;">
+					<li class="zhuanqu" id="zhuanqu3" @mouseenter="enter3()" @mouseleave="leave3()">香水专区
+					<div id="xiangshui" v-bind:class="xszq1==true?'block':'none'">
 						<div class="xs_head">
 							<ul class="xs_ul">
 								<li class="xs_ul_li">
-									<ul class="xs_ul_ul">
+									<ul class="xs_ul_ul" @click="toProduct(3)">
 										<li>女士香水系列</li>
 										<li>阿玛尼新寄情香水</li>
 										<li>阿玛尼印记香水</li>
 										<li>阿玛尼挚爱香水</li>
 									</ul>
 								</li>
-								<li class="xs_ul_li"><ul class="xs_ul_ul">
+								<li class="xs_ul_li"><ul class="xs_ul_ul"">
 										<li>男士香水系列</li>
 										<li>阿玛尼寄情香水</li>
 										<li>阿玛尼印记香水</li>
 										<li>阿玛尼印记运动香水</li>
 										<li>阿玛尼本色香水</li>
 									</ul></li>
-								<li class="xs_ul_li"><ul class="xs_ul_ul">
+								<li class="xs_ul_li"><ul class="xs_ul_ul"">
 										<li>明星系列</li>
 										<li>寄情系列</li>
 										<li>挚爱系列</li>
@@ -193,9 +194,9 @@
 				</ul>
 			</div> 
 			 <div id="search">
-				<input id="search_input"/>
+				<input id="search_input" @focus="focus()" @blur="blur()"/>
 				<i id="serch_img"></i>
-				<div id="search_form">
+				<div id="search_form" v-bind:class="search==true?'block':'none'">
 					<ul> 
 						<li>1</li>
 						<li>1</li>
@@ -204,13 +205,13 @@
 				</div>
 			</div> 
 			<div id="head_right">
-				<div id="dingdan">
+				<div id="dingdan" @click="dingdan()">
 					<img src="../../assets/icon/dingdan1.png" id="dingdan1"/>
 					</div>
-					<div id="car">
+					<div id="car" @click="cart()">
 					<img src="../../assets/icon/gouwuche1.png" id="car1"/>
 				</div>
-				<div id="person">
+				<div id="person" @click="tiao()">
 					<img src="../../assets/icon/geren1.png" id="person1"/>
 				</div>
 			</div>		
@@ -220,44 +221,97 @@
 
 <script>
 	import Vue from 'vue'
-	$(function() {
-	$("#search_input").focus(function(){
-		$("#search_form").css("display","block");
-	})
-		$("#search_input").blur(function(){
-		$("#search_form").css("display","none");
-	})
-	$("#zhuanqu1").mouseover(function(){
-		$("#caizhuang").css("display","block");
-	}) 
-	$("#zhuanqu1").mouseout(function(){
-		$("#caizhuang").css("display","none");
-	}) 
-		$("#zhuanqu2").mouseover(function(){
-		$("#hufu").css("display","block");
-	}) 
-	$("#zhuanqu2").mouseout(function(){
-		$("#hufu").css("display","none");
-	}) 
-		$("#zhuanqu3").mouseover(function(){
-		$("#xiangshui").css("display","block");
-	}) 
-	$("#zhuanqu3").mouseout(function(){
-		$("#xiangshui").css("display","none");
-	}) 
-	})
+import {mapActions, mapGetters} from 'vuex'
+	const data={
+		czzq1:false ,
+		hfzq1:false ,
+		xszq1:false ,
+		search:false,
+	}
 	export default{
-		name:'Head'
+		name:'Head',
+		data(){
+			return data;
+		},
+			computed: {
+		    ...mapGetters(['userAll']) // 用户属性，动态计算属性，相当于this.$store.getters.resturantName
+		},
+		methods:{
+			dingdan(){
+				this.$router.replace("/kongbai")
+			},
+			
+			toProduct(p_id){
+				this.$router.push({
+        			path:'/product',
+        			query:{
+          				p_id:p_id
+        			}
+      			})
+				//this.$router.replace("/product")
+			},	
+			cart(){
+				this.$router.replace("/cart")
+			},	
+			enter1(){
+				this.czzq1=true;
+			},
+			enter2(){
+				this.hfzq1=true;
+			},
+			enter3(){
+				this.xszq1=true;
+			},
+			focus(){
+				this.search=true;
+			},
+			leave1(){
+				this.czzq1=false;
+			},
+			leave2(){
+				this.hfzq1=false;
+			},
+			leave3(){
+				this.xszq1=false;
+			},
+			blur(){
+				this.search=false;
+			},
+			tiao(){
+				console.log(JSON.stringify(this.userAll))
+				if(JSON.stringify(this.userAll)=='{}'){
+					this.$router.replace("/login")
+				}else{
+					this.$router.replace("/index")
+				}
+			}
+		}
 	}
 </script>
 
 <style>
+
+	.none{
+		display: none;
+	}
+	.block{
+		display: block;
+	}
+*{
+	padding: 0px;
+	margin: 0px;
+}
+#container{
+	width: 100%;
+/* 	background-color: grey; */
+}
 /*头部左边两个图标盒子*/
 #head{
 	width: 100%;
 	height: 90px;
 	position: fixed;
-	z-index: 1;
+/* 	background-color: #1B1B1B; */
+	z-index: 10;
 }
 #head:hover{
 	background-color: #1B1B1B ;
@@ -320,8 +374,8 @@
 	color: darkgrey;
 }
 /* 三个专区的下拉框 */
-#xiangshui,#hufu,#caizhuang{
-	display: none;
+
+#xiangshui,#caizhuang,#hufu{
 	position: absolute;
 	width: 100%;
 	height: 300px;
@@ -350,6 +404,7 @@
 	height: 100%;
 }
 .xs_ul_ul{
+ padding-top: 8%; 
 	height: 100%;
 	width: 100%;
 }
@@ -427,17 +482,17 @@ color: #FFFFFF
 position: relative;
 	width: 11.4%;
 	height: 44.4%;
-	margin-left: 50px;
-	margin-top: 30px;
+	margin-left: 5%;
+	margin-top: 2%;
 	
 }
 #search_input{
 	width:77.7% ;
 	height: 63%;
-	padding-left: 20px;
-	padding-right: 5px;
+	padding-left: 10%;
+	padding-right: 2.5%;
 	border-radius: 15px;
-	border: 4px solid;
+	border: 4px solid white;
 	outline:none;
 	
 }
@@ -446,22 +501,21 @@ position: relative;
 	border-color: skyblue;
 }
 #serch_img{
-	margin-top: 8px;
-	margin-left: 5px;
+	margin-top: 4%;
+	margin-left: 2.5%;
 	background-image: url(../../assets/icon/search.png);
 	background-repeat: no-repeat;
 	position: absolute;
 	left: 0px;
 	 background-position: 0px 0px; 
-	width: 16px;
-	height: 16px;
+	width: 1rem;
+	height: 1rem;
 }
 #search_form{
 	position: absolute;
 	background-color: white;
 	left: 5%;
 	width: 85%;
-	display: none;
 }
 
 #search_form ul{
@@ -477,7 +531,7 @@ position: relative;
 /*头部右边三个图标*/
 #head_right{
 	float: right;
-	margin-top: 30px;
+	margin-top: 2%; 
 	position:  relative;
 	width: 19%;
 	height: 44.4%;
