@@ -44,7 +44,7 @@
 <script>
 	import Vue from 'vue'
 	export default{
-		
+		name:'Foot'
 	}
 </script>
 

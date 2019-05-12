@@ -11,4 +11,12 @@
 /* export const query_nav_msg=({commit},uid)=> commit('query_nav_msg',uid) */
 //action 相当于java中的controller
 			//暴露给外面的接口名                         （执行mutation对应的函数名称，参数）
+
 export const query_nav_msg=({commit},nav_msg)=> commit('query_nav_msg',nav_msg)
+export const getPicture=({commit},picture) =>{
+	commit('getPicture',picture)
+}
+export const getName=({commit},name) =>{
+	commit('getName',name)
+}
+

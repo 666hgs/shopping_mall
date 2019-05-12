@@ -207,7 +207,7 @@
 				<div id="dingdan" @click="dingdan()">
 					<img src="../../assets/icon/dingdan1.png" id="dingdan1"/>
 					</div>
-					<div id="car">
+					<div id="car" @click="cart()">
 					<img src="../../assets/icon/gouwuche1.png" id="car1"/>
 				</div>
 				<div id="person">
@@ -257,11 +257,12 @@
 		name:'Head',
 		data(){
 			return data;
-		},	
+		},
 		methods:{
 			dingdan(){
 				this.$router.replace("/kongbai")
 			},
+			
 			toProduct(p_id){
 				this.$router.push({
         			path:'/product',
@@ -270,7 +271,10 @@
         			}
       			})
 				//this.$router.replace("/product")
-			},
+			},	
+			cart(){
+				this.$router.replace("/cart")
+			},	
 			enter1(){
 				this.czzq1=true;
 			},
