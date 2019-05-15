@@ -5,7 +5,9 @@ import * as actions from './actions.js'
 import * as mutations from './mutations.js'
 
 Vue.use(Vuex) 
+
 //多个组件用到的值放到vuex中管理
+
 
 //声明全局维护的状态state
 const state={
@@ -15,14 +17,23 @@ const state={
 		fansCount:0,
 		blogCount:0
 	},
-	token:"1"
-	,
+	userAll:{
+		u_id: '',
+		u_lastname: '',
+		u_sex: '',
+		u_phone: '',
+		u_birth: '',
+		u_idcard: '',
+		u_status: '',
+		u_email: '',
+		u_pwd: '',
+		username: '',
+		address: '',
+	},
+	token: '',
 	picture:""			,//以此类推,
 	name:"",
 	
-	userAll:{
-		u_id:1608030149
-	}
 
 }
 

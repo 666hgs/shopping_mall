@@ -113,11 +113,11 @@
 			 submit_order(){
 				/* Stores.remove(); */
 				let info={
-					u_id:this.id,  //产品id       //标志位
+					u_id:this.userAll.u_id,  //产品id       //标志位
 					orderList:[
 						{
 							orderType :this.pro_id, //产品类型id
-							orderID	:this.userAll.u_id,  //用户id
+							orderID	:this.id,  //用户id
 							goodsMoney:this.number*this.singerprice,
 							goodsNumber: this.number,
 							goodsDetail:this.singerCom.name,

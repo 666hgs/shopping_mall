@@ -9,6 +9,7 @@
 			</div> 
 			<div id="head_list_div"> 
 				<ul class="head_list_ul">
+
 					<li class="zhuanqu" id="zhuanqu1" @mouseenter="enter1()" @mouseleave="leave1()">彩妆专区<span>|</span>
 					<div id="caizhuang" v-bind:class="czzq1==true?'block':'none'">
 						<div class="xs_head">
@@ -210,7 +211,7 @@
 					<div id="car" @click="cart()">
 					<img src="../../assets/icon/gouwuche1.png" id="car1"/>
 				</div>
-				<div id="person">
+				<div id="person" @click="tiao()">
 					<img src="../../assets/icon/geren1.png" id="person1"/>
 				</div>
 			</div>		
@@ -220,33 +221,7 @@
 
 <script>
 	import Vue from 'vue'
-	$(function() {
-/* 	$("#search_input").focus(function(){
-		
-		$("#search_form").css("display","block");
-	})
-		$("#search_input").blur(function(){
-		$("#search_form").css("display","none");
-	})
-	$("#zhuanqu1").mouseover(function(){
-		$("#caizhuang").css("display","block");
-	}) 
-	$("#zhuanqu1").mouseout(function(){
-		$("#caizhuang").css("display","none");
-	}) 
-		$("#zhuanqu2").mouseover(function(){
-		$("#hufu").css("display","block");
-	}) 
-	$("#zhuanqu2").mouseout(function(){
-		$("#hufu").css("display","none");
-	}) 
-		$("#zhuanqu3").mouseover(function(){
-		$("#xiangshui").css("display","block");
-	}) 
-	$("#zhuanqu3").mouseout(function(){
-		$("#xiangshui").css("display","none");
-	}) */
-	})
+import {mapActions, mapGetters} from 'vuex'
 	const data={
 		czzq1:false ,
 		hfzq1:false ,
@@ -257,6 +232,9 @@
 		name:'Head',
 		data(){
 			return data;
+		},
+			computed: {
+		    ...mapGetters(['userAll']) // 用户属性，动态计算属性，相当于this.$store.getters.resturantName
 		},
 		methods:{
 			dingdan(){
@@ -298,12 +276,21 @@
 			},
 			blur(){
 				this.search=false;
+			},
+			tiao(){
+				console.log(JSON.stringify(this.userAll))
+				if(this.userAll.u_id == ''){
+					this.$router.replace("/login")
+				}else{
+					this.$router.replace("/index")
+				}
 			}
 		}
 	}
 </script>
 
 <style>
+
 	.none{
 		display: none;
 	}
@@ -387,6 +374,7 @@
 	color: darkgrey;
 }
 /* 三个专区的下拉框 */
+
 #xiangshui,#caizhuang,#hufu{
 	position: absolute;
 	width: 100%;
@@ -543,7 +531,7 @@ position: relative;
 /*头部右边三个图标*/
 #head_right{
 	float: right;
-	margin-top: 2%;
+	margin-top: 2%; 
 	position:  relative;
 	width: 19%;
 	height: 44.4%;
